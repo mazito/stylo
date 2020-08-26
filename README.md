@@ -19,9 +19,8 @@ Example:
   A panel with background, color, border, shadow, radii, padding
   and margin using default Theme values
 </Panel>
+```
 
 ## Status
 
-<p style="background-color:yellow;">
-This is work in progress. 
-</p>
+**This is work in progress**
