@@ -1,4 +1,4 @@
-import { DefaultTheme } from './default'
+import { DefaultTheme } from './theme-default'
 import { DefaultExtras } from './extras'
 import { buildDomains } from './domains'
 import { sortBreakpoints } from './breakpoints'

@@ -1,5 +1,5 @@
-import Theme from '../theme'
-import { CssMapper } from './properties'
+import Theme from './theme';
+import { CssMapper } from './css-properties';
 
 export function Css(props) {
   

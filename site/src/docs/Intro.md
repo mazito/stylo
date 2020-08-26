@@ -61,8 +61,8 @@ The basic building block for creating a UI. All layout components are unstyled b
 - Text
 
 <script>
-  import { Panel } from './stylo'
-  import PanelExample from './examples/panels.svelte'
+  import { Panel } from 'svelte-stylo'
+  import PanelExample from '../examples/panels.svelte'
 
   let exampleNum = null;
 

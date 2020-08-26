@@ -22,7 +22,7 @@
 </Overlay>
 
 <script>
-  import { Panel, Overlay, Button } from '../stylo'
+  import { Panel, Overlay, Button } from 'svelte-stylo'
 
   export let show = false;
 </script>

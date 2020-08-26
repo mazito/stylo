@@ -47,7 +47,7 @@ Other special properties:
 
 <style>
 .text {
-  display: inline-block;
+  display: inline;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -62,8 +62,8 @@ Other special properties:
 </style>
 
 <script>
-  import Css from '../css'
-
+  import { Css } from '../theme';
+  
   let css = Css($$props)
     .shorthand(['xs','sm','nm','md','lg','xl','h2', 'h1'], 'font-size')
     .shorthand(['italic','underline'], 'font-style')

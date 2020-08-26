@@ -66,9 +66,8 @@
 <svelte:window bind:innerWidth={vw} />
 
 <script>
-	import { fade, } from 'svelte/transition';
-  import Css from '../css'
-
+  import { Css } from '../theme';
+  
   export let 
     show = false,
     modal = false,

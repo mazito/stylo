@@ -43,9 +43,9 @@
 </Page>
 
 <script>
-  import Intro from 'docs/intro.md'
+  import { Theme, Page, Panel, Box, Label } from 'svelte-stylo'
 
-  import { Theme, Page, Panel, Box, Label } from './stylo'
+  import Intro from './docs/Intro.md'
 
   Theme.wireframes(false)
         .build('default')

@@ -35,8 +35,8 @@
 <svelte:window bind:innerWidth={vw} />
 
 <script>
-  import Css from '../css'
-
+  import { Css } from '../theme';
+  
   export let 
     show = true;
   

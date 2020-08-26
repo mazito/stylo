@@ -1,4 +1,4 @@
-import { sized, constrained, unconstrained } from '../theme/domains'
+import { sized, constrained, unconstrained } from './domains'
 
 /**
  * Maps a received property (in $$props) to a certain domain, 

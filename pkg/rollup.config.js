@@ -3,36 +3,26 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
-import { markdown } from 'svelte-preprocess-markdown';
+
+import pkg from './package.json';
 
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-  input: 'src/main.js',
+  input: 'src/index.js',
   
-	output: {
-		sourcemap: true,
-		format: 'iife',
-		name: 'app',
-		file: 'public/build/bundle.js'
-  },
+	output: [
+    { file: pkg.module, format: 'es' },
+    { file: pkg.main, format: 'cjs' }
+  ],
   
 	plugins: [
 		svelte({
 			// enable run-time checks when not in production
       dev: !production,
       
-			// we'll extract any component CSS out into
-			// a separate file - better for performance
-			css: css => {
-				css.write('public/build/bundle.css');
-      },
-
       // add '.md', to the extensions  
-      extensions: ['.svelte','.md'],
-
-      // add markdown preprocessor
-      preprocess: markdown()      
+      extensions: ['.svelte'],
 		}),
 
 		// If you have external dependencies installed from

@@ -61,8 +61,7 @@
 
 <script>
   import { onMount } from 'svelte'
-  import Css from '../css'
-  import Theme from '../theme'
+  import { Css, Theme } from '../theme'
 
   export let
     show = false,
@@ -138,5 +137,4 @@
     }
     return 'id'+(randint(0, 65535).toString(16))
   }
-  
 </script>
