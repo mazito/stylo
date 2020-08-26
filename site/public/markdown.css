@@ -1,0 +1,48 @@
+.markdown h1 { font-size: 32px; font-weight: 400; }
+.markdown h2 { font-size: 26px; font-weight: 300; margin-top: 2em; }
+.markdown h3 { font-size: 22px; font-weight: 300; margin-top: 1.5em; }
+.markdown h4 { font-size: 18px; font-weight: 500; margin-top: 1em; }
+
+.markdown a, 
+.markdown a:visited {
+  color: #009688;
+  font-weight: 400;
+}
+
+.markdown pre {
+  display: block;
+  padding: 0 0.75rem;
+  border-radius: 0.5rem;
+  background-color: #efefef;
+  margin-right: 1rem;
+}
+
+.markdown pre code {
+  overflow-x:auto;
+  display: block;
+  background-color: inherit;
+  color: #313139;
+  padding: 1rem;
+  line-height: 1.45em;
+  font-size: 0.875em;
+}
+
+.markdown code {
+  display: inline-block;
+  padding: 0px 0.5rem;
+  border-radius: 0.125rem;
+  background-color: #f7fafc;
+  color: hsl(8, 82%, 41%);;
+  font-size: 0.875em;
+  line-height: 1.5em;
+  font-weight: 500;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.markdown p {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0px;
+  margin-right: 0px;
+}
