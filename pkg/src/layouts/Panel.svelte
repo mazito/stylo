@@ -1,8 +1,8 @@
 {#if show}
   <div 
     on:click 
-    class="panel { css && css.classes() }"
-    style={ css && css.styled() }
+    class="panel { css && css.classes(vw) }"
+    style={ css && css.styled(vw) }
     >
     <slot></slot>
   </div>
@@ -40,11 +40,10 @@
 
   let 
     vw = 0,
-    css = null;
-    
-  $: if (vw) {
     css = Css($$props);
-    show = css.visible(show);
-    console.log("$ Panel vw=", vw, show)
+    
+  $: if (vw && $$props) {
+    show = css.visible(show, vw);
+    // console.log("$ Panel vw=", vw, show)
   }
 </script>

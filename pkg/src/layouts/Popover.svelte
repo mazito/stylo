@@ -1,20 +1,22 @@
 <!--
-  This is the basic Popover building block
-  on which other Popovers can be build.
+@component
 
-  Notes: ideally should not use any styling, as it simply is
-  a container for whatever you will be putting inside it. 
-  
-  All styling must be done in the contained elements.
+This is the basic Popover building block
+on which other Popovers can be build.
 
-  API:
+Notes: ideally should not use any styling, as it simply is
+a container for whatever you will be putting inside it. 
 
-    show = false,
-    anchor = null,
-    w = "18", 
-    x = 0, 
-    y = 0,
-    position = "right"  
+All styling must be done in the contained elements.
+
+API:
+
+  show = false,
+  anchor = null,
+  w = "18", 
+  x = 0, 
+  y = 0,
+  position = "right"  
 -->    
 <div 
   id={id}
@@ -25,7 +27,7 @@
       bind:clientWidth={cw} 
       bind:clientHeight={ch}    
       class="popover { wireframe ? ' wireframe' : '' }"
-      style={ css.styled() } 
+      style={ css.styled(vw) } 
       >
       <slot></slot>
     </div>
@@ -42,7 +44,7 @@
 </style>
 
 
-<svelte:window on:click={() => { 
+<svelte:window bind:innerWidth={vw} on:click={() => { 
   console.log("outside");
   //show=false; 
   if (anchor) anchor.on=false; 
@@ -52,12 +54,13 @@
 <script context="module">
   import { writable } from 'svelte/store'
 
-  export let activePop = writable(null);
+  export const activePop = writable(null);
 
   activePop.set(null);
 
   console.log("Active Pop")
 </script>
+
 
 <script>
   import { onMount } from 'svelte'
@@ -66,7 +69,7 @@
   export let
     show = false,
     anchor = null,
-    w = "18", 
+    // w = "18", 
     x = 0, y = 0,
     position = "right";  // aligns right popover with right anchor 
 
@@ -76,6 +79,7 @@
     styled,
     cw, ch, // client width and height
     wireframe = Theme.wireframes(),
+    vw = 0,
     css = Css($$props);
 
   // create anchor if it does not exist
@@ -130,8 +134,10 @@
   })
 
   function randid() {
-    // Returns a randomized ID of the form 'idXXXX'
-    // where X is a Hexa digit (0..F)
+    /** 
+     * Returns a randomized ID of the form 'idXXXX'
+     * where X is a Hexa digit (0..F) 
+     */
     function randint(min, max) {
       return parseInt(min + Math.floor((max - min) * Math.random()))
     }

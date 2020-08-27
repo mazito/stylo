@@ -1,5 +1,5 @@
-import { DefaultTheme } from './theme-default'
-import { DefaultExtras } from './extras'
+import { DefaultTheme } from './default-theme'
+import { DefaultExtras } from './extra-domains'
 import { buildDomains } from './domains'
 import { sortBreakpoints } from './breakpoints'
 

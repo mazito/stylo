@@ -1,7 +1,7 @@
 {#if show}
 <div>
   <div 
-    class="overlay { css && css.classes() }" 
+    class="overlay { css && css.classes(vw) }" 
     transition:fade="{{delay: 20, duration: 300}}"
     >
   </div>
@@ -66,6 +66,7 @@
 <svelte:window bind:innerWidth={vw} />
 
 <script>
+  import { fade } from "svelte/transition";
   import { Css } from '../theme';
   
   export let 
@@ -75,10 +76,9 @@
 
   let 
     vw = 0,
-    css = null;
-    
-  $: if (vw) {
     css = Css($$props);
-    show = css.visible(show);
+    
+  $: if (vw && $$props) {
+    show = css.visible(show, vw);
   }
 </script>

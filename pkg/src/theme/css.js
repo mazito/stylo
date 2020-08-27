@@ -1,95 +1,106 @@
 import Theme from './theme';
-import { CssMapper } from './css-properties';
+import { SHORTHANDS, SYNONYMS, CssMapper } from './css-properties';
+
+
+function replaceShorthand(options, prop, _props) {
+  let rs = (options || []).filter((opt) => {
+    // only use shorthand if it has NO other value
+    // example: '<Panel border ...' uses the shorthand 
+    // but: '<Panel border="1" ...' must NOT use it
+    return _props[opt] !== undefined && _props[opt] === true
+  });
+  if (rs && rs.length > 0) _props[prop] = rs[0];
+  return _props; 
+}
+
+function replaceSynonyms(_props) {
+  // now replace synonyms if they exist
+  Object.keys(SYNONYMS).map((k) => {
+    if (_props[k] !== undefined) {
+      SYNONYMS[k].map((t) => {
+        _props[t] = _props[k];
+      })
+    }
+  })
+  return _props;
+}
+
 
 export function Css(props) {
   
-  let _allowed = null;
-
-  let _forbidden = null;
-
   // copy ALL props, they will be filtered latter
   let _props = {...props}; 
 
-  /*
-    **Shorthands** are short names for some specific properties,
-    but note that explicitly defined props will take precedence over 
-    shorthand names. 
-    Example: <Panel fixed position="relative"
-    will result in position="relative" being set instead of 'fixed'
-  */
-  const _shorts = [
-    [['fixed','absolute','relative'], 'position'],
-    [['round'], 'border-radius'],
-    [['pointer'], 'cursor'],
-    [['nowrap'], 'white-space'],
-    [['grow'], 'flex-grow'],
-    [['shrink'], 'flex-shrink'],
-    [['flex'], 'flex-direction'],
-    [['shadow'], 'box-shadow'],
-    [['border','wired'], 'border'], 
-  ]
+  // first process all global shorthands
+  SHORTHANDS.map((v) => { 
+    _props = replaceShorthand(v[0], v[1], _props); 
+  })
 
-  /*
-    Synonyms are props that affect a group of similar props,
-    such as mx sets margins left and right
-    Example: <Panel mx=1
-    will result in ml=1 mr=1
-  */
-  const _synonyms = {
-    'mx': ['ml','mr'],
-    'my': ['mt','mb'],
-    'px': ['pl','pr'],
-    'py': ['pt','pb'],
-  }
+  // now replace all global synonyms 
+  _props = replaceSynonyms(_props);
+
+  // now _props contains only "valid" CSS properties
 
   return ({
 
-    shorthand(options, prop) {
-      let rs = (options || []).filter((opt) => {
-        // only use shorthand if it has NO other value
-        // example: '<Panel border ...' uses the shorthand 
-        // but: '<Panel border="1" ...' must NOT use it
-        return _props[opt] !== undefined && _props[opt] === true
-      });
-      if (rs && rs.length > 0) _props[prop] = rs[0];
+    props() {
+      return _props;
+    },
+
+    get(name) {
+      return(
+        (_props[name] !== undefined) 
+          ? CssMapper[name](_props[name])
+          : null
+      )
+    },
+
+    set(name, value) {
+      if (!!name && value!==null) _props[name] = value;
       return this; // enable chaining it
     },
 
+    shorthand(options, prop) {
+      _props = replaceShorthand(options, prop, _props);
+      return this; // enable chaining it
+    },
+
+    synonym(name, prop) {
+      if (!!_props[name]) _props[prop] = _props[name];
+      return this; // enable chaining it
+    },
+    
     whitelist(allowed) {
-      _allowed = allowed;
+      Object.keys(_props).map((t) => {
+        if (!(allowed || []).includes(t)) delete _props[t];
+      })
       return this; // enable chaining it
     },
 
     blacklist(forbidden) {
-      _forbidden = forbidden;
+      (forbidden || []).map((t) => { 
+        if (_props[t] !== undefined) delete _props[t];
+      })
       return this; // enable chaining it
     },
 
-    styled() {
-      // first process global shorthands
-      _shorts.map((v) => { 
-        this.shorthand(v[0], v[1]); 
-      })
-
-      // now replace synonyms if they exist
-      Object.keys(_synonyms).map((k) => {
-        if (_props[k] !== undefined) {
-          _synonyms[k].map((t) => {
-            _props[t] = _props[k];
-          })
-        }
-      })
-
-      // now apply all valid mapped styles 
+    styled(vw) {
+      /** 
+       * Apply all valid mapped styles
+       * @returns: the 'style' string. 
+       */
       let styles = Object.keys(_props)
         .filter((p) => CssMapper[p] !== undefined && _props[p] !== null)
-        .map((p) => CssMapper[p](_props[p]));
+        .map((p) => {
+          const v = CssMapper[p](_props[p]);
+          return (v !== null ? `${p}:${v}` : '');
+        })
 
       // return a formatted 'style' string
       return styles.join(';');
     },
 
-    classes() {
+    classes(vw) {
       /**
        * A very limited set of utility classes, necessary 
        * for additional behaviour in some special cases, 
@@ -104,15 +115,15 @@ export function Css(props) {
       );
     },
 
-    visible(defalt) {
+    visible(show, vw) {
       /**
        * Returns calculated visibility if 'visible' prop is defined,
-       * otherwise it returns the given default value
+       * otherwise it returns the given default value.
        */
       return (
         !!_props.visible 
-          ? (CssMapper['visible'](_props.visible)==='visible:true') 
-          : defalt
+          ? (CssMapper['visible'](_props.visible)==='true') 
+          : show
       );
     }
   })

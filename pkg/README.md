@@ -2,7 +2,7 @@
 
 A set of utility components and functions for quickly building theme-based user interfaces in Svelte.
 
-It's **loosely** based on [Styled System](https://styled-system.com/) ideas and [Theme specification](https://system-ui.com/theme).
+It's **loosely** based on [Styled System](https://styled-system.com/) ideas and [Theme specification](https://system-ui.com/theme), but implemented as pure Svelte components (without any external dependencies).
 
 Styling is applied using normal Svelte properties, taken from [a theme-aware set of CSS properties (and shorthands)](./properties.md).
 
@@ -23,4 +23,4 @@ Example:
 
 ## Status
 
-**This is work in progress**
+**This is work in progress. Not ready for dev or production.**

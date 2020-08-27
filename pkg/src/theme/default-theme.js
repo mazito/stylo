@@ -10,10 +10,11 @@ export const DefaultTheme = {
     xs: '12px', // caption 
     sm: '14px', // body 2
     nm: '16px', // body 1
-    md: '18px', // h4
-    lg: '22px', // h3
-    xl: '26px', // h2
-    h1: '36px', // h1
+    md: '18px', // 
+    lg: '22px', // h4
+    xl: '26px', // h3
+    h1: '32px', // h2
+    h1: '42px', // h1
   },
 
   fontWeights: {
@@ -62,7 +63,7 @@ export const DefaultTheme = {
       '': '#6a6a7f',
       '-': '#998999'
     },
-
+    muted: '#9a9aba',
     link: '#009688',
 
     // emotional colors

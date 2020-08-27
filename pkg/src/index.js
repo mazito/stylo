@@ -2,12 +2,12 @@ import Page from './layouts/Page.svelte'
 import Panel from './layouts/Panel.svelte'
 import Box from './layouts/Box.svelte'
 import Overlay from './layouts/Overlay.svelte'
-import Dialog from './layouts/Dialog.svelte'
 import Popover from './layouts/Popover.svelte'
 import Target from './layouts/Target.svelte'
 import Text from './elements/Text.svelte'
 import Label from './elements/Label.svelte'
 import Button from './elements/Button.svelte'
+import Icon from './elements/Icon.svelte'
 import Theme from './theme/theme'
 import { Css } from './theme/css'
 
@@ -17,16 +17,16 @@ export {
   Panel,
   Box,
   Overlay,
-  Dialog,
   Popover,
   Target,
   
   // Elements 
   Button,
+  Icon,
   Label,
   Text,
 
-  // Api
+  // API
   Theme,
   Css
 }

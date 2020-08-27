@@ -29,7 +29,7 @@
   
   let 
     me = null,
-    state = false, 
+    // state = false, 
     vw = 0,
     show = true,
     css = null;

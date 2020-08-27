@@ -1,8 +1,8 @@
 {#if show}
   <div 
     on:click
-    class="box { css && css.classes() }"
-    style={ css && css.styled() }
+    class="box { css && css.classes(vw) }"
+    style={ css && css.styled(vw) }
     >
     <slot></slot>
   </div>
@@ -30,11 +30,10 @@
 
   let 
     vw = 0,
-    css = null;
-    
-  $: if (vw) {
     css = Css($$props);
-    show = css.visible(show);
-    console.log("Box", css)
-  }
+    
+  $: if (vw && $$props) {
+    show = css.visible(show, vw);
+    // console.log("Box", css)
+  } 
 </script>
