@@ -25,6 +25,3 @@ Example:
 
 **This is work in progress, not ready for dev or production use.**
 
-## Doumentation
-
-For full documentation and examples visit [stylo.treme.io](https://stylo.treme.io).
