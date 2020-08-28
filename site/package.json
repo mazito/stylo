@@ -9,6 +9,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.0",
     "@rollup/plugin-node-resolve": "^7.0.0",
+    "mdi-svelte": "^1.1.1",
     "rollup": "^1.20.0",
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-svelte": "^5.0.3",
@@ -17,7 +18,11 @@
     "svelte-preprocess-markdown": "^2.7.0"
   },
   "dependencies": {
+    "@iconify/icons-ri": "^1.0.1",
+    "@iconify/svelte": "^1.0.2",
     "@mdi/font": "^5.4.55",
+    "@mdi/js": "^5.5.55",
+    "@mdi/svg": "^5.5.55",
     "sirv-cli": "^0.4.4"
   }
 }
