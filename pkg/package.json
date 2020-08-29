@@ -23,7 +23,6 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
-    "@mdi/font": "^5.4.55",
     "sirv-cli": "^0.4.4"
   }
 }

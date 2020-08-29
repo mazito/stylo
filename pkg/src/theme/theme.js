@@ -13,6 +13,15 @@ let _current = _themes['default'];
 
 
 export default {
+
+  get(name) {
+    /**
+     * Get the named Theme.
+     * @returns: the named Theme or the default one if none.
+     */
+    if (!name) return _themes['default'];
+    return _themes[name] || _themes['default'];
+  },
   
   build(name, spec) {
     /**

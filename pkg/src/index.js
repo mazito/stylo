@@ -3,7 +3,8 @@ import Panel from './layouts/Panel.svelte'
 import Box from './layouts/Box.svelte'
 import Overlay from './layouts/Overlay.svelte'
 import Popover from './layouts/Popover.svelte'
-import Target from './layouts/Target.svelte'
+import { activePop } from './layouts/Popover.svelte'
+import Trigger from './layouts/Trigger.svelte'
 import Text from './elements/Text.svelte'
 import Label from './elements/Label.svelte'
 import Button from './elements/Button.svelte'
@@ -18,7 +19,8 @@ export {
   Box,
   Overlay,
   Popover,
-  Target,
+  activePop,
+  Trigger,
   
   // Elements 
   Button,

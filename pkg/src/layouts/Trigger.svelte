@@ -2,8 +2,8 @@
   <div 
     on:click={ handleIt }
     bind:this={ me }
-    class="target { css && css.classes() }"
-    style={ css && css.styled() }
+    class="target { css && css.classes(vw) }"
+    style={ css && css.styled(vw) }
     >
     <slot></slot>
   </div>
@@ -25,14 +25,13 @@
   import { Css } from '../theme';  
   
   export let 
+    show = true,
     anchor; // used to toggle Popover on/off
   
   let 
     me = null,
-    // state = false, 
     vw = 0,
-    show = true,
-    css = null;
+    css = Css($$props);
 
   // initialize Anchor if undefined or empty
   anchor = anchor || {
@@ -42,8 +41,7 @@
   };
 
   $: if (vw) {
-    css = Css($$props);
-    show = css.visible(show);
+    show = css.visible(show, vw);
   }
 
   function handleIt(ev) {

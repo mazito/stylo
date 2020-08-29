@@ -59,6 +59,8 @@ export const SYNONYMS = {
   'justify': ['justify-content'],
   'grow': ['flex-grow'],
   'shrink': ['flex-shrink'],
+  'flex': ['flex-direction'],
+  'shadow': ['box-shadow']
 }
 
 /**
@@ -100,6 +102,7 @@ export const CssMapper = {
   'overflow': maps(constrained(''), 'overflow'),
   
   'color': maps(unconstrained('colors'), 'color'),
+  'fill': maps(unconstrained('colors'), 'fill'),
   'background-color': maps(unconstrained('colors'), 'background-color'),
 
   'border': maps(unconstrained('borders'), 'border'),
@@ -133,7 +136,6 @@ export const CssMapper = {
   'cursor': maps(constrained('cursors'), 'cursor'),
   
   // Flex props  
-  'flex': maps(constrained('flexDirections'), 'flex-direction'),
   'flex-direction': maps(constrained('flexDirections'), 'flex-direction'),
   'align-items': maps(constrained('flexAlignItems'), 'align-items'),
   'justify-content': maps(constrained('flexJustifyContents'), 'justify-content'),

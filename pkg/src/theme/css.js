@@ -9,7 +9,12 @@ function replaceShorthand(options, prop, _props) {
     // but: '<Panel border="1" ...' must NOT use it
     return _props[opt] !== undefined && _props[opt] === true
   });
-  if (rs && rs.length > 0) _props[prop] = rs[0];
+  if (rs && rs.length > 0) {
+    _props[prop] = rs[0];
+    delete _props[rs[0]]; // MUST delete the shorthand to avoid problems with SYNONYS
+    console.log("Shorthand ", prop, _props[prop], options)
+  }
+
   return _props; 
 }
 
@@ -31,13 +36,25 @@ export function Css(props) {
   // copy ALL props, they will be filtered latter
   let _props = {...props}; 
 
+  if (_props['shadow'] || _props['box-shadow']) {
+    console.log('alert')
+  }
+
   // first process all global shorthands
   SHORTHANDS.map((v) => { 
     _props = replaceShorthand(v[0], v[1], _props); 
   })
 
+  if (_props['shadow'] || _props['box-shadow']) {
+    console.log('alert')
+  }
+
   // now replace all global synonyms 
   _props = replaceSynonyms(_props);
+
+  if (_props['shadow'] || _props['box-shadow']) {
+    console.log('alert')
+  }
 
   // now _props contains only "valid" CSS properties
 

@@ -17,15 +17,18 @@
   class="icon-container { css && css.classes(vw) }"
   style={ css && css.styled(vw) }
   >
-  <span 
-    class="icon mdi mdi-{name}"
+  <svg 
+    class="icon"
     style={ icss && icss.styled(vw) }
-    >
-  </span>
+    viewBox="0 0 24 24">
+    <use 
+      xlink:href={`${source}/${svgname}.svg#${prefix}${svgname}`} 
+      />
+  </svg>  
 </span>
 
+
 <style>
-/* No additional styles needed when using Iconify */
 .icon-container {
   box-sizing: border-box;
   display: inline-block;
@@ -34,9 +37,11 @@
   margin: 0;
   /* no-vertical-align: middle;*/
 }
+
 .icon {
   box-sizing: border-box;
   display: inline-block;
+  fill: inherit;
   color: inherit;
   background-color: transparent;
   padding: 0;
@@ -50,36 +55,46 @@
 <svelte:window bind:innerWidth={vw} />
 
 <script>
-  import { Css } from '../theme';
-  
+  import { Theme, Css } from '../theme';
+
   export let 
     name = '',
     size = null, // rem or px or whatever ...
-    spin = null,
-    outlined = null,
-    filled = null,
+    // spin = null,
     show = true;
 
-  let vw = 0;
+  let 
+    theme = Theme.active(),
+    source = theme.icons.source,
+    prefix = theme.icons.prefix,
+    svgname = theme.icons.files[name] || '',
+    vw = 0;
 
+  // the icon-container css props
   let css = Css($$props)
-      .blacklist(['font-size']);
+            .blacklist(['font-size','color']);
   
+  // the icon css props
   let icss = Css($$props)
-      .synonym('size', 'font-size')
-      .shorthand(['xs','sm','nm','md','lg','xl','h2','h1'], 'font-size')
-      .whitelist(['font-size']);
-
-  console.log("Icon 1:", css.props(), icss.props())
-
+              .synonym('size', 'font-size')
+              .synonym('color', 'fill')
+              .shorthand(['xs','sm','nm','md','lg','xl','h2','h1'], 'font-size')
+              .whitelist(['font-size','fill'])
+              
+  // set default props if none defined
+  icss.set('font-size', icss.get('font-size') || '1rem');
+  
+  // adjust icon-container props based on other received props
   css.set('height', css.get('height') || icss.get('font-size'))
-  css.set('width', css.get('width') || css.get('height') || icss.get('font-size'))
-  css.set('line-height', css.get('height') || icss.get('font-size'))
+      .set('width', css.get('width') || css.get('height') || icss.get('font-size'))
+      .set('line-height', css.get('height') || icss.get('font-size'))
+              
+  // adjust icon props based on other received props
+  // height is needed by SVG to correctly scale the icon
+  icss.set('height', icss.get('font-size'));
 
-  console.log("Icon 2:", css.props(), icss.props())
-    
   $: if (vw && $$props) {
     show = css.visible(show, vw);
-    // console.log("$ Panel vw=", vw, show)
+    // console.log("$ Icon vw=", vw, show)
   }
 </script>

@@ -11,10 +11,10 @@ export const DefaultTheme = {
     sm: '14px', // body 2
     nm: '16px', // body 1
     md: '18px', // 
-    lg: '22px', // h4
-    xl: '26px', // h3
-    h1: '32px', // h2
-    h1: '42px', // h1
+    lg: '20px', // h4
+    xl: '24px', // h3
+    h2: '30px', // h2
+    h1: '36px', // h1
   },
 
   fontWeights: {
@@ -58,11 +58,8 @@ export const DefaultTheme = {
     page: '#fafafa',
     surface: '#fff',
 
-    // text body colors (on surface)
-    body: {
-      '': '#6a6a7f',
-      '-': '#998999'
-    },
+    // text colors (on surface)
+    body: '#6a6a7f',
     muted: '#9a9aba',
     link: '#009688',
 
@@ -71,7 +68,7 @@ export const DefaultTheme = {
     warning: 'yellow',
     success: 'green',
     info: 'cyan',
-    light: '#f5f5ff',
+    light: '#f4f8fc',
     dark: '#212141',
 
     // full palette
@@ -188,7 +185,7 @@ export const DefaultTheme = {
   },
 
   shadows: {
-    'shadow': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+    'shadow': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
     'xs': '0 0 0 1px rgba(0, 0, 0, 0.05)',
     'sm': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
     'nm': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
@@ -244,7 +241,12 @@ export const DefaultTheme = {
   },
 
   icons: {
-    'close': 'close'
+    prefix: 'mdi-',
+    source: 'assets/@mdi/svg',
+    files: {
+      'close': 'close',
+      'network': 'access-point-network',
+    }  
   },
 
   breakpoints: {
