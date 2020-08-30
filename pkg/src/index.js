@@ -10,6 +10,7 @@ import Label from './elements/Label.svelte'
 import Button from './elements/Button.svelte'
 import Input from './elements/Input.svelte'
 import Icon from './elements/Icon.svelte'
+import Heading from './elements/Heading.svelte'
 import Theme from './theme/theme'
 import { Css } from './theme/css'
 
@@ -29,6 +30,7 @@ export {
   Input,
   Label,
   Text,
+  Heading,
 
   // API
   Theme,

@@ -12,9 +12,10 @@ export const DefaultTheme = {
     nm: '16px', // body 1
     md: '18px', // 
     lg: '20px', // h4
-    xl: '24px', // h3
-    h2: '30px', // h2
-    h1: '36px', // h1
+    xl: '24px', // h3 = 1.5rem
+    h3: '28px', // h3 = 1.75rem
+    h2: '32px', // h2 = 2rem
+    h1: '36px', // h1 = 2.25rem
   },
 
   fontWeights: {
