@@ -2,8 +2,8 @@
   bind:value={value}
   on:click
   on:change
-  class="input { toClasses(props) }"
-  style={ toStyles(props) }
+  class="input { css && css.classes(vw) }"
+  style={ css && css.styled(vw) }
   placeholder={placeholder}
   />
 
@@ -22,13 +22,22 @@
 }
 </style>
 
-<script>
-  import { toClasses, toStyles, shorthand } from './../../layouts/helpers'
+<svelte:window bind:innerWidth={vw} />
 
-  export let
+<script>
+  import { Css } from '../theme';  
+  
+  export let 
+    show = true,
     placeholder = '',
     value = null;
-
+  
   let 
-    props = $$props ;
+    vw = 0,
+    css = Css($$props)
+          .shorthand(['xs','sm','nm','md','lg','xl','h2', 'h1'], 'font-size');
+  
+  $: if (vw) {
+    show = css.visible(show, vw);
+  }
 </script>

@@ -60,7 +60,8 @@ export const SYNONYMS = {
   'grow': ['flex-grow'],
   'shrink': ['flex-shrink'],
   'flex': ['flex-direction'],
-  'shadow': ['box-shadow']
+  'shadow': ['box-shadow'],
+  'color': ['fill']
 }
 
 /**
@@ -99,7 +100,7 @@ export const CssMapper = {
   'right': maps(sized('sizing'), 'right'),
   'bottom': maps(sized('sizing'), 'bottom'),
 
-  'overflow': maps(constrained(''), 'overflow'),
+  'overflow': maps(constrained('scrolling'), 'overflow'),
   
   'color': maps(unconstrained('colors'), 'color'),
   'fill': maps(unconstrained('colors'), 'fill'),
@@ -130,7 +131,7 @@ export const CssMapper = {
   // Text props
   'white-space':  maps(constrained('wraps'), 'white-space'),
   'text-align': maps(constrained('horizontalAligns'), 'text-align'),
-  'vertical-alignment': maps(constrained('verticalAligns'), 'vertical-align'),
+  'vertical-align': maps(constrained('verticalAligns'), 'vertical-align'),
 
   // Cursors
   'cursor': maps(constrained('cursors'), 'cursor'),

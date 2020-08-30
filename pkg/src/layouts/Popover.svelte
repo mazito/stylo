@@ -27,7 +27,7 @@ API:
       bind:clientWidth={cw} 
       bind:clientHeight={ch}    
       class="popover { wireframe ? ' wireframe' : '' }"
-      style={ css.styled(vw) } 
+      style="{ css && css.styled(vw) };{ located }" 
       >
       <slot></slot>
     </div>
@@ -43,13 +43,11 @@ API:
 }
 </style>
 
-
 <svelte:window bind:innerWidth={vw} on:click={() => { 
   console.log("outside");
   //show=false; 
   if (anchor) anchor.on=false; 
 }}/>
-
 
 <script context="module">
   import { writable } from 'svelte/store'
@@ -69,17 +67,17 @@ API:
   export let
     show = false,
     anchor = null,
-    // w = "18", 
-    x = 0, y = 0,
+    x = null, y = null,
     position = "right";  // aligns right popover with right anchor 
 
   let
     //selfie = null,
     id = randid(),
-    styled,
+    located,
     cw, ch, // client width and height
     wireframe = Theme.wireframes(),
     vw = 0,
+    yy, xx,
     css = Css($$props);
 
   // create anchor if it does not exist
@@ -96,24 +94,32 @@ API:
       let ww = body.clientWidth;
 
       if (anchor) {
-        // if using a 'anchor' must calculate
-        // the position relative to this anchor
-        x = position === 'right' 
-            ? anchor.bounds.right - cw 
-            : anchor.bounds.left ;
+        xx = x 
+              // if we received an X position me must use it
+              ? x 
+              // if not X then must calculate
+              // the position relative to this anchor
+              : (position === 'right' 
+                ? anchor.bounds.right - cw 
+                : anchor.bounds.left) ;
 
-        y = anchor.bounds.bottom ;
+        yy = y
+              // if we received an Y position me must use it
+              ? y
+              // if not Y then must calculate
+              // the position relative to this anchor
+              : anchor.bounds.bottom ;
 
         console.log("$ Popover y,bounds.bottom=", y, anchor.bounds.bottom)
 
         // reposition correctly if 
         // out of the screen borders
-        if (x+cw >= ww) x = ww - cw - 1;
-        if (x <= 0) x = 1;
+        if (xx+cw >= ww) xx = ww - cw - 1;
+        if (xx <= 0) xx = 1;
       }
 
-      // set the 'style' BEFORE putting it visible
-      styled = 'left:'+x+'px;'+'top:'+y+'px;'
+      // set the 'location' BEFORE putting it visible
+      located = 'left:'+xx+'px;'+'top:'+yy+'px;'
 
       // show = anchor.on; // now we can activate it !
 
@@ -121,7 +127,7 @@ API:
       // we are now the only active one !
       activePop.set(id) ;
 
-      console.log("$ Popover active", id, anchor.on, x, y)
+      console.log("$ Popover active", id, anchor.on, xx, yy)
   }
 
   activePop.subscribe((t) => {

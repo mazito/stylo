@@ -11,8 +11,9 @@ function replaceShorthand(options, prop, _props) {
   });
   if (rs && rs.length > 0) {
     _props[prop] = rs[0];
-    delete _props[rs[0]]; // MUST delete the shorthand to avoid problems with SYNONYS
-    console.log("Shorthand ", prop, _props[prop], options)
+
+    // MUST delete the shorthand to avoid problems with SYNONYS
+    delete _props[rs[0]]; 
   }
 
   return _props; 
@@ -36,25 +37,13 @@ export function Css(props) {
   // copy ALL props, they will be filtered latter
   let _props = {...props}; 
 
-  if (_props['shadow'] || _props['box-shadow']) {
-    console.log('alert')
-  }
-
   // first process all global shorthands
   SHORTHANDS.map((v) => { 
     _props = replaceShorthand(v[0], v[1], _props); 
   })
 
-  if (_props['shadow'] || _props['box-shadow']) {
-    console.log('alert')
-  }
-
   // now replace all global synonyms 
   _props = replaceSynonyms(_props);
-
-  if (_props['shadow'] || _props['box-shadow']) {
-    console.log('alert')
-  }
 
   // now _props contains only "valid" CSS properties
 
@@ -124,7 +113,7 @@ export function Css(props) {
        * example: hover='some-global-hover-class'
        */
       return(''
-        + (!!_props.flex ? ' flexed' : '')
+        + (!!_props['flex-direction'] ? ' flexed' : '')
         + (!!_props.transparent ? ' transparent' : '')
         + (!!_props.hover ? (_props.hover !== true ? ' '+_props.hover : ' hover') : '')
         + (Theme.wireframes() ? ' wireframe' : '')

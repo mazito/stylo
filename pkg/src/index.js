@@ -8,6 +8,7 @@ import Trigger from './layouts/Trigger.svelte'
 import Text from './elements/Text.svelte'
 import Label from './elements/Label.svelte'
 import Button from './elements/Button.svelte'
+import Input from './elements/Input.svelte'
 import Icon from './elements/Icon.svelte'
 import Theme from './theme/theme'
 import { Css } from './theme/css'
@@ -25,6 +26,7 @@ export {
   // Elements 
   Button,
   Icon,
+  Input,
   Label,
   Text,
 

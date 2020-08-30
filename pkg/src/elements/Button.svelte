@@ -17,6 +17,8 @@
   line-height: 1em;
   word-wrap: normal;
   white-space: nowrap;
+  margin: 0; /* fix because default button has unneeded margin */
+  /* dont' touch padding */
 }
 </style>
 

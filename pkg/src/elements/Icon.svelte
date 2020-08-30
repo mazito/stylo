@@ -35,7 +35,12 @@
   text-align: center;
   padding: 0;
   margin: 0;
-  /* no-vertical-align: middle;*/
+  fill: inherit;
+  position: relative;
+  no-border: 1px dotted red;
+
+  /* fix alignment of image with text baseline /*/
+  margin-bottom: -0.25em; 
 }
 
 .icon {
@@ -47,8 +52,13 @@
   padding: 0;
   margin: 0;
   line-height: 1em;
-  vertical-align: middle;
-  margin-top: -0.125em; /* to fix incorrect vertical centering */
+  
+  /* to fix vertical centering of icn inside container */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 </style>
 

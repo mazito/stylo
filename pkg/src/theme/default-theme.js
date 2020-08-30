@@ -261,6 +261,11 @@ export const DefaultTheme = {
   // Extra domains added to Theme to validate 
   // other constrains but that are not themables
 
+  scrolling: {
+    'hidden': 'hidden',
+    'auto': 'auto'
+  },
+
   positioning: {
     'fixed': 'fixed',
     'absolute': 'absolute',
@@ -285,7 +290,8 @@ export const DefaultTheme = {
   verticalAligns: {
     'top': 'top',
     'bottom': 'bottom',
-    'middle': 'middle'
+    'middle': 'middle',
+    'baseline': 'baseline'
   },
 
   flexDirections: {
@@ -317,7 +323,6 @@ export const DefaultTheme = {
   },
 
   flexShrinks: {
-    true: '1',
     'shrink': '1',
     'no': '0'
   },
