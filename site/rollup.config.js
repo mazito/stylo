@@ -12,9 +12,12 @@ export default {
   
 	output: {
 		sourcemap: true,
-		format: 'iife',
 		name: 'app',
-		file: 'public/build/bundle.js'
+		//format: 'iife',
+    //file: 'public/build/bundle.js'
+    // code splitting
+		format: 'es',
+		dir: 'public/build/'
   },
   
 	plugins: [

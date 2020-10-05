@@ -128,7 +128,7 @@ export function Css(props) {
        */
       return (
         !!_props.visible 
-          ? (CssMapper['visible'](_props.visible)==='true') 
+          ? (CssMapper['visible'](_props.visible)===true) 
           : show
       );
     }

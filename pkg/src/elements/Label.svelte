@@ -39,14 +39,17 @@ Other special properties:
 
 ,``,``,``,``,``,``,
 -->
-<div
-  class="text { css.classes() }"
+{#if show}
+<label
+  for={control}
+  class="label { css.classes() }"
   style={ css.styled() }>
   <slot></slot>
-</div>
+</label>
+{/if}
 
 <style>
-.text {
+.label {
   display: inline-block;
   box-sizing: border-box;
   margin: 0;
@@ -61,14 +64,26 @@ Other special properties:
 }
 </style>
 
+<svelte:window bind:innerWidth={vw} />
+
 <script>
   import { Css } from '../theme';
-  
-  let css = Css($$props)
-    .shorthand(['xs','sm','nm','md','lg','xl','h2', 'h1'], 'font-size')
-    .shorthand(['italic','underline'], 'font-style')
-    .shorthand(['normal','bold','thin'], 'font-weight')
-    .shorthand(['center','left','right','justify'], 'text-align')
-    .shorthand(['nowrap'], 'white-space')
-    .shorthand(['middle','top','bottom'], 'vertical-alignment')
+
+  export let 
+    control = null; // the ControlId binded to this Label
+
+  let 
+    vw = 0,
+    show = true,
+    css = Css($$props)
+      .shorthand(['xs','sm','nm','md','lg','xl','h2', 'h1'], 'font-size')
+      .shorthand(['italic','underline'], 'font-style')
+      .shorthand(['normal','bold','thin'], 'font-weight')
+      .shorthand(['center','left','right','justify'], 'text-align')
+      .shorthand(['nowrap'], 'white-space')
+      .shorthand(['middle','top','bottom'], 'vertical-alignment')
+
+  $: if (vw) {
+    show = css.visible(show, vw);
+  }
 </script>

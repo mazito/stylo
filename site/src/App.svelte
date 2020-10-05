@@ -106,14 +106,16 @@
         pl="nm" pr="nm" align="left"
         >
   
-        <Panel show={page==='#/home'}>
-          <Intro></Intro>
+        <Panel show={current===null} align="center" m="xl">
+          <Label xl>
+            Not reaaaady yet ... please wait me !
+          </Label>
         </Panel>
-  
-        <Panel show={page==='#/icon'}>
-          <Icons></Icons>
+
+        <Panel show={page}>
+          <svelte:component this={Any[page]}/>
         </Panel>
-  
+
       </Box>
       
     </Panel>
@@ -121,25 +123,67 @@
   </Panel>
 </Page>
 
-<svelte:window on:hashchange={() => {
-  //alert("Hola");
-  changePage()
-}}/>
+<svelte:window on:hashchange={() => {changePage();}}/>
 
 <script>
   import { Theme, Page, Panel, Box, Label } from 'svelte-stylo'
 
-  import Intro from './docs/Intro.md'
-  import Icons from './docs/elements/icons.md'
+  /**
+   * Theming and settings
+   */ 
+  let theme = Theme.get('default');
+
+  theme.icons = {
+    source: 'assets/@mdi/svg',
+    prefix: 'mdi-',
+    files: {
+      'close': 'close',
+    }
+  }
 
   Theme.wireframes(false)
         .build('default')
         .active('default');
 
-  let page = '#/icon';
-  location.hash = page;
-
-  function changePage() {
-    page = location.hash;
+  /**
+   * Routing page changes and dynamic import of modules
+   */
+  let 
+    page = null,
+    params = null,
+    current = null ;
+    
+  function route(page) {
+    if (page === '#/home') return import('./docs/intro.md');
+    if (page === '#/icon') return import('./docs/elements/icons.md');
+    return null;
   }
+
+  let Any = {}; // cached components go here
+
+  // set empty hash so hashchange can detect changes
+  location.hash = "#"
+
+  // wait some time before setting 'home'
+  setTimeout(() => {
+    location.hash = '#/home';
+  }, 500);
+ 
+  function changePage() {
+    // respond to the 'hashchange' event and
+    // extract page and params from location url
+    const parts = location.hash.split('?')
+    page = parts[0];
+    params = parts.length > 1 ? parts[1].split('&') : [];
+  }
+  
+  $: if (page && page !== current) {
+    console.log("$ page=", page)
+    const routed = route(page) ;
+    if (routed && !Any[page]) routed.then(module => {
+      Any[page] = module.default;
+      console.log("$ Loaded route=", routed)
+      current = page ;
+    })
+  }  
 </script>

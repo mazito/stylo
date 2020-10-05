@@ -1,3 +1,4 @@
+{#if show}
 <input
   bind:value={value}
   on:click
@@ -6,6 +7,7 @@
   style={ css && css.styled(vw) }
   placeholder={placeholder}
   />
+{/if}
 
 <style>
 .input {

@@ -147,6 +147,9 @@ export const CssMapper = {
   // but we need it as a visibility toggler
   'visible': maps(unconstrained('booleans'), 'visible'),
 
+  // transforms have no special domain: it's too complex to normalize
+  'transform': maps(unconstrained('no-domain'), 'transform'),
+
   /*
   '': maps(constrained(''), ''),
   '': maps(unconstrained(''), ''),

@@ -9,6 +9,7 @@ import Text from './elements/Text.svelte'
 import Label from './elements/Label.svelte'
 import Button from './elements/Button.svelte'
 import Input from './elements/Input.svelte'
+import Select from './elements/Select.svelte'
 import Icon from './elements/Icon.svelte'
 import Heading from './elements/Heading.svelte'
 import Theme from './theme/theme'
@@ -28,6 +29,7 @@ export {
   Button,
   Icon,
   Input,
+  Select,
   Label,
   Text,
   Heading,

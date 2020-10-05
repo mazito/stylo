@@ -56,7 +56,7 @@ export const DefaultTheme = {
     },
 
     // back colors
-    page: '#fafafa',
+    page: '#f5f5f6',//'#fcfefc',
     surface: '#fff',
 
     // text colors (on surface)
@@ -66,9 +66,10 @@ export const DefaultTheme = {
 
     // emotional colors
     danger: '#ff0000',
-    warning: 'yellow',
+    warning: 'orange',
     success: 'green',
-    info: 'cyan',
+    info: '#b3e5fc',
+    'info++': 'blue',
     light: '#f4f8fc',
     dark: '#212141',
 
@@ -253,7 +254,7 @@ export const DefaultTheme = {
   breakpoints: {
     // uses min.width as breakpoint
     // 'xs' is '*' between 0 and 360
-    'sm': 360,  // > 22.5rem => Phone
+    'sm': 480,  // > 22.5rem => Phone
     'md': 768,  // > 48 rem => Tablet 
     'lg': 1024, // > 64 rem => Laptop
     'xl': 1280, // > 80rem => Desktop

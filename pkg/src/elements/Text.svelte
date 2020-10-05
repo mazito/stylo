@@ -1,7 +1,9 @@
 <!--
-A block of text inside a Box or Panel. 
+@component Text
 
-It is ALLWAY 'inline-block' so margins and padding are fully consistent.
+A stream of text inside a Box or Panel. 
+
+It is ALLWAY 'inline' so margins and padding may not be allways fully consistent.
 
 Shorthand properties:
 
@@ -39,11 +41,11 @@ Other special properties:
 
 ,``,``,``,``,``,``,
 -->
-<div
+<span
   class="text { css.classes() }"
   style={ css.styled() }>
   <slot></slot>
-</div>
+</span>
 
 <style>
 .text {
@@ -51,24 +53,33 @@ Other special properties:
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-size: 100%;
-  font-weight: normal;
-  font-style: normal;
-  line-height: 1em;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  font-style: inherit;
   word-wrap: normal; /* or ? break-word; */
   white-space: normal;
   hyphens: inherit; /* from the global.css setting */
 }
 </style>
 
+<svelte:window bind:innerWidth={vw} />
+
 <script>
   import { Css } from '../theme';
   
-  let css = Css($$props)
-    .shorthand(['xs','sm','nm','md','lg','xl','h2', 'h1'], 'font-size')
-    .shorthand(['italic','underline'], 'font-style')
-    .shorthand(['normal','bold','thin'], 'font-weight')
-    .shorthand(['center','left','right','justify'], 'text-align')
-    .shorthand(['nowrap'], 'white-space')
-    .shorthand(['middle','top','bottom'], 'vertical-alignment')
+  let 
+    vw = 0,
+    show = true,
+    css = Css($$props)
+      .shorthand(['xs','sm','nm','md','lg','xl','h4','h3','h2','h1'], 'font-size')
+      .shorthand(['italic','underline'], 'font-style')
+      .shorthand(['normal','bold','thin'], 'font-weight')
+      .shorthand(['center','left','right','justify'], 'text-align')
+      .shorthand(['nowrap'], 'white-space')
+      .shorthand(['middle','top','bottom'], 'vertical-alignment')
+
+  $: if (vw && $$props) {
+    show = css.visible(show, vw);
+  }
 </script>
