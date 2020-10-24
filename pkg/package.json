@@ -1,11 +1,16 @@
 {
   "name": "svelte-stylo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Svelte theme-aware components",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "svelte": "src/index.js",
-  "keywords": ["Svelte", "CSSinJS", "DesignSystems", "StyledSystem"],
+  "keywords": [
+    "Svelte",
+    "CSSinJS",
+    "DesignSystems",
+    "StyledSystem"
+  ],
   "author": "mario.zito@treme.io",
   "license": "MIT",
   "scripts": {
