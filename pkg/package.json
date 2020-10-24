@@ -1,7 +1,7 @@
 {
-  "name": "svelte-stylo",
+  "name": "stylo",
   "version": "0.1.0",
-  "description": "Stylo theme-aware components",
+  "description": "Svelte theme-aware components",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "svelte": "src/index.js",
