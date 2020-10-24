@@ -41,11 +41,13 @@ Other special properties:
 
 ,``,``,``,``,``,``,
 -->
-<span
-  class="text { css.classes() }"
-  style={ css.styled() }>
-  <slot></slot>
-</span>
+{#if show}
+  <span
+    class="text { css.classes() }"
+    style={ css.styled() }>
+    <slot></slot>
+  </span>
+{/if}
 
 <style>
 .text {

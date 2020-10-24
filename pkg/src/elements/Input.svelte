@@ -3,6 +3,8 @@
   bind:value={value}
   on:click
   on:change
+  on:focus
+  on:blur
   class="input { css && css.classes(vw) }"
   style={ css && css.styled(vw) }
   placeholder={placeholder}

@@ -1,6 +1,8 @@
 {#if show}
   <div 
-    on:click 
+    on:click
+    on:focus
+    tabindex={tab}
     class="panel { css && css.classes(vw) }"
     style={ css && css.styled(vw) }
     >
@@ -36,7 +38,8 @@
   import { Css } from '../theme';
   
   export let 
-    show = true;
+    show = true,
+    tab ; // do not set to null
 
   let 
     vw = 0,

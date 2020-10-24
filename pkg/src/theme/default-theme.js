@@ -68,7 +68,7 @@ export const DefaultTheme = {
     danger: '#ff0000',
     warning: 'orange',
     success: 'green',
-    info: '#b3e5fc',
+    info: '#34dcf3',
     'info++': 'blue',
     light: '#f4f8fc',
     dark: '#212141',
@@ -206,6 +206,7 @@ export const DefaultTheme = {
     '3': '1px solid #ccd',
     '4': '1px solid #bbc',
     '5': '1px solid #aab',
+    '6': '1px solid #888',
   },
 
   radii: {
@@ -255,8 +256,8 @@ export const DefaultTheme = {
     // uses min.width as breakpoint
     // 'xs' is '*' between 0 and 360
     'sm': 480,  // > 22.5rem => Phone
-    'md': 768,  // > 48 rem => Tablet 
-    'lg': 1024, // > 64 rem => Laptop
+    'md': 760,  // > 48 rem => Tablet 
+    'lg': 1020, // > 64 rem => Laptop
     'xl': 1280, // > 80rem => Desktop
   },
   

@@ -41,6 +41,7 @@ Other special properties:
 -->
 {#if show}
 <label
+  on:click
   for={control}
   class="label { css.classes() }"
   style={ css.styled() }>

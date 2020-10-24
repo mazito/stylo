@@ -107,4 +107,8 @@
     show = css.visible(show, vw);
     // console.log("$ Icon vw=", vw, show)
   }
+
+  $: if ($$props['name']) {
+    svgname = theme.icons.files[name] || '';
+  }
 </script>
