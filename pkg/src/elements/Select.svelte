@@ -49,7 +49,7 @@
     show = true,
     css = null;
 
-  $: if (vw) {
+  $: if (vw && $$props) {
     css = Css($$props)
           .shorthand(['xs','sm','nm','md','lg','xl','h2', 'h1'], 'font-size')
     show = css.visible(show, vw);
