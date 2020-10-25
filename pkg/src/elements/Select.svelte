@@ -47,10 +47,11 @@
   let 
     vw = 0,
     show = true,
-    css = Css($$props)
-      .shorthand(['xs','sm','nm','md','lg','xl','h2', 'h1'], 'font-size')
+    css = null;
 
   $: if (vw) {
+    css = Css($$props)
+          .shorthand(['xs','sm','nm','md','lg','xl','h2', 'h1'], 'font-size')
     show = css.visible(show, vw);
   }
 </script>
