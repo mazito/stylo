@@ -43,8 +43,8 @@ Other special properties:
 <label
   on:click
   for={control}
-  class="label { css.classes() }"
-  style={ css.styled() }>
+  class="label { css && css.classes() }"
+  style={ css && css.styled() }>
   <slot></slot>
 </label>
 {/if}
@@ -76,6 +76,9 @@ Other special properties:
   let 
     vw = 0,
     show = true,
+    css = null;
+
+  $: if (vw && $$props) {
     css = Css($$props)
       .shorthand(['xs','sm','nm','md','lg','xl','h2', 'h1'], 'font-size')
       .shorthand(['italic','underline'], 'font-style')
@@ -83,8 +86,6 @@ Other special properties:
       .shorthand(['center','left','right','justify'], 'text-align')
       .shorthand(['nowrap'], 'white-space')
       .shorthand(['middle','top','bottom'], 'vertical-alignment')
-
-  $: if (vw) {
     show = css.visible(show, vw);
   }
 </script>

@@ -1,8 +1,8 @@
 {#if show}
 <select
   id={id || ''}
-  class="selector { css.classes() }"
-  style={ css.styled() }
+  class="selector { css && css.classes() }"
+  style={ css && css.styled() }
   bind:value={value}>
 
   {#if options && options.length}
