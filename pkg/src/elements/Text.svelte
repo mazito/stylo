@@ -43,8 +43,8 @@ Other special properties:
 -->
 {#if show}
   <span
-    class="text { css.classes() }"
-    style={ css.styled() }>
+    class="text { css && css.classes() }"
+    style={ css && css.styled() }>
     <slot></slot>
   </span>
 {/if}
@@ -73,15 +73,16 @@ Other special properties:
   let 
     vw = 0,
     show = true,
-    css = Css($$props)
-      .shorthand(['xs','sm','nm','md','lg','xl','h4','h3','h2','h1'], 'font-size')
-      .shorthand(['italic','underline'], 'font-style')
-      .shorthand(['normal','bold','thin'], 'font-weight')
-      .shorthand(['center','left','right','justify'], 'text-align')
-      .shorthand(['nowrap'], 'white-space')
-      .shorthand(['middle','top','bottom'], 'vertical-alignment')
+    css = null;
 
   $: if (vw && $$props) {
+    css = Css($$props)
+          .shorthand(['xs','sm','nm','md','lg','xl','h4','h3','h2','h1'], 'font-size')
+          .shorthand(['italic','underline'], 'font-style')
+          .shorthand(['normal','bold','thin'], 'font-weight')
+          .shorthand(['center','left','right','justify'], 'text-align')
+          .shorthand(['nowrap'], 'white-space')
+          .shorthand(['middle','top','bottom'], 'vertical-alignment')
     show = css.visible(show, vw);
   }
 </script>

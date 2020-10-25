@@ -2,7 +2,8 @@
 <select
   id={id || ''}
   class="selector { css.classes() }"
-  style={ css.styled() }>
+  style={ css.styled() }
+  bind:value={value}>
 
   {#if options && options.length}
     {#each options as opt}

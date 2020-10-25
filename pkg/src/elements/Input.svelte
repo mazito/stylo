@@ -16,7 +16,6 @@
   display: inline-block;
   overflow: hidden;
   box-sizing: border-box;
-  border: none;
   margin: 0;
   padding: 0;
   font-size: 100%;
@@ -38,10 +37,11 @@
   
   let 
     vw = 0,
+    css = null;
+  
+  $: if (vw && $$props) {
     css = Css($$props)
           .shorthand(['xs','sm','nm','md','lg','xl','h2', 'h1'], 'font-size');
-  
-  $: if (vw) {
     show = css.visible(show, vw);
   }
 </script>
