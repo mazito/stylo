@@ -9,11 +9,13 @@ import Button from './elements/Button.svelte'
 import Heading from './elements/Heading.svelte'
 import Icon from './elements/Icon.svelte'
 import Input from './elements/Input.svelte'
+import Textarea from './elements/Textarea.svelte'
 import Label from './elements/Label.svelte'
 import Select from './elements/Select.svelte'
 import Text from './elements/Text.svelte'
 import Theme from './theme/theme'
 import { Css } from './theme/css'
+import { onBreakpoint } from './theme/domains'
 
 export {
   // Layouts
@@ -29,6 +31,7 @@ export {
   Button,
   Icon,
   Input,
+  Textarea,
   Select,
   Label,
   Text,
@@ -36,7 +39,8 @@ export {
 
   // API
   Theme,
-  Css
+  Css,
+  onBreakpoint
 }
 
 /*

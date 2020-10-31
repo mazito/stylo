@@ -31,7 +31,7 @@
   let 
     me = null,
     vw = 0,
-    css = Css($$props);
+    css = null;
 
   // initialize Anchor if undefined or empty
   anchor = anchor || {
@@ -40,7 +40,8 @@
     bounds: { left:0, right: 0, top: 0, bottom:0 }
   };
 
-  $: if (vw) {
+  $: if (vw && $$props) {
+    css = Css($$props);
     show = css.visible(show, vw);
   }
 

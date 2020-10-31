@@ -75,6 +75,7 @@ Other special properties:
 
   let 
     vw = 0,
+    id = null,
     show = true,
     css = null;
 

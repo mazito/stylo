@@ -28,6 +28,8 @@ export function sortBreakpoints(points) {
 export function selectOnBp(options, vps) {
   /**
    * Selects an option based on the currently active breakpoints.
+   * @options: the set of options to select from
+   * @vps: active viewports
    * @returns: the option corresponding to the bigger available Viewport.
    */
   let selected = null ;

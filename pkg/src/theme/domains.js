@@ -129,3 +129,7 @@ function measure(val) {
         : val+'rem'
   )
 }
+
+export function onBreakpoint(options) {
+  return selectOnBp(options, _viewports) 
+}

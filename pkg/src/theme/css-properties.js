@@ -150,6 +150,9 @@ export const CssMapper = {
   // transforms have no special domain: it's too complex to normalize
   'transform': maps(unconstrained('no-domain'), 'transform'),
 
+  // transforms have no special domain: it's too complex to normalize
+  'z-index': maps(unconstrained('no-domain'), 'z-index'),
+
   /*
   '': maps(constrained(''), ''),
   '': maps(unconstrained(''), ''),
