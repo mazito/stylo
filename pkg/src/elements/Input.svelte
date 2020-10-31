@@ -24,7 +24,21 @@
     />
 {/if}
 
-{#if show && type==="number"}
+{#if show && type==="integer"}
+  <input
+    id={id} type="number" pattern="[0-9]*"
+    lang="es-AR"
+    bind:value={value}
+    bind:this={me}
+    on:click on:change on:focus on:blur
+    class="input { css && css.classes(vw) }"
+    style={ css && css.styled(vw) }
+    placeholder={placeholder}
+    disabled={disabled}
+    />
+{/if}
+
+{#if show && type==="decimal"}
   <input
     id={id} type="number" pattern="[0-9]*"  inputmode="decimal" 
     step="0.01" lang="es-AR" 
