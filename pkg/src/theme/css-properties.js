@@ -61,7 +61,10 @@ export const SYNONYMS = {
   'shrink': ['flex-shrink'],
   'flex': ['flex-direction'],
   'shadow': ['box-shadow'],
-  'color': ['fill']
+  'color': ['fill'],
+
+  // EXPERIMENTAL
+  'outline': ['--outline-background-color'],
 }
 
 /**
@@ -152,6 +155,9 @@ export const CssMapper = {
 
   // transforms have no special domain: it's too complex to normalize
   'z-index': maps(unconstrained('no-domain'), 'z-index'),
+
+  // EXPERIMENTAL: Using CSS variables
+  '--outline-background-color': maps(constrained('colors', 'outline')),
 
   /*
   '': maps(constrained(''), ''),
