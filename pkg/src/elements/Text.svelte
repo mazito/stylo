@@ -85,8 +85,7 @@ Other special properties:
           .shorthand(['center','left','right','justify'], 'text-align')
           .shorthand(['nowrap'], 'white-space')
           .shorthand(['middle','top','bottom'], 'vertical-alignment')
-    console.log("Text show1=", show)
+
     show = css.visible(show, vw);
-    console.log("Text show2=", show)
   }
 </script>
