@@ -64,7 +64,10 @@ export const SYNONYMS = {
   'color': ['fill'],
 
   // EXPERIMENTAL
-  'outline': ['--outline-background-color'],
+  'focus-bg': ['--focus-background'],
+  'focus-background': ['--focus-background'],
+  'hover-bg': ['--hover-background'],
+  'hover-background': ['--hover-background'],
 }
 
 /**
@@ -157,7 +160,8 @@ export const CssMapper = {
   'z-index': maps(unconstrained('no-domain'), 'z-index'),
 
   // EXPERIMENTAL: Using CSS variables
-  '--outline-background-color': maps(constrained('colors', 'outline')),
+  '--focus-background': maps(constrained('colors', 'outline')),
+  '--hover-background': maps(constrained('colors', 'outline')),
 
   /*
   '': maps(constrained(''), ''),

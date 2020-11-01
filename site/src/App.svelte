@@ -82,6 +82,8 @@
           <a href="#">Theme-aware properties</a>
           <br>
           <a href="#">Customization</a>
+          <br>
+          <a href="#/tips">Tips & Tricks</a>
         </Panel>
 
         <Panel pb="nm">
@@ -156,6 +158,7 @@
   function route(page) {
     if (page === '#/home') return import('./docs/intro.md');
     if (page === '#/icon') return import('./docs/elements/icons.md');
+    if (page === '#/tips') return import('./docs/theming/tips.md');
     return null;
   }
 

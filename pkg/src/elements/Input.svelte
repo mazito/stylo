@@ -5,9 +5,11 @@
     type="text" 
     class={"input "+ (css && css.classes(vw))}
     style={css && css.styled(vw)}
-    on:click on:change on:input
+    on:click on:change 
     on:focus on:blur 
-    on:keyup on:keypress on:keydown={pressed} 
+    on:keyup 
+    on:input={pressed} 
+    on:keydown
     bind:value={value} 
     {...extras}
     />
@@ -45,7 +47,7 @@
 input:focus {
   outline-width: 0px;
   outline-color: transparent;
-  background-color: var(--outline-background-color);
+  background-color: var(--focus-background, #eaeaea);
   padding-left: 4px;
 }
 </style>
@@ -127,34 +129,59 @@ input:focus {
     size = size || sizes[type];
 
     if (css.get("width")===null) css.set("width", size+"ch");
-
-    // set outline background when focused
-    console.log("Input outline=", css.get("--outline-background-color"));
   }
 
   function pressed(ev) {
-    console.log("Input pressed ev,selectionStart=", ev, ev.target.selectionStart)
+    /*
+    // Mobile problem solved !!!
+
+    Idea of using input event is taken from: [JavaScript Events Unmasked: How to Create an Input Mask for Mobile](https://medium.com/outsystems-experts/javascript-events-unmasked-how-to-create-an-input-mask-for-mobile-fc0df165e8b2)
+    by [Glauber Corrêa](https://medium.com/@glaubercorrea).
+
+    Problem with input event is that it returns the changed value, so we must 
+    eliminate the added char AFTER it was added if its not valid. 
+    
+    Fixed using 'ev.target.selectionStart' for finding the position of last added char.
+    */
+    //console.log("Input keydown ev=", ev, ev.key, ev.code, ev.keyCode, ev.keyIdentifier);
+    //console.log("Input ev.target.selectionStart=", ev.target.selectionStart);
+
+    let before = (value !== null) ? value : ''; // value before char was inserted
+
+    let pos = ev.target.selectionStart; // position AFTER last inserted char
+
+    let key = ev.target.value[pos-1]; // get inserted key from the changed value
+
+    //console.log("Input pos,key,before,value=", pos, key, before, ev.target.value);
+
+    // Backspace is allways allowed
+    if (ev.inputType==="deleteContentBackward") return;
+
     if (!extras.charset) return; // no restrictions, allows all
-    if (controlkeys.includes(ev.key)) return; // is control key, just ignore
-    if (canInclude(ev) && extras.charset.includes(ev.key)) return;// included in charset
-    ev.preventDefault(); // must stop it
+    if (controlkeys.includes(key)) return; // is control key, just ignore
+    if (canInclude(key, pos) && extras.charset.includes(key)) return;// included in charset
+
+    // must stop it
+    console.log("Input stoppedIt");
+    ev.target.value = before;
+    ev.preventDefault(); 
   }
 
-  function canInclude(ev) {
+
+  function canInclude(key, pos) {
     // if not a numeric type, any char can be included
     if (!(["decimal","integer"].includes(type))) return true;
 
     // any other char can be included
-    if (ev.key!==decimalPoint && ev.key!=='-') return true; 
+    if (key!==decimalPoint && key!=='-') return true; 
 
     const s = (value || '').toString();
 
     // if ',' it can only be included if no other coma is present
-    if (ev.key===decimalPoint && !s.includes(decimalPoint)) return true;
+    if (key===decimalPoint && !s.includes(decimalPoint)) return true;
 
     // if '-' it can only be included as the first char
-    const pos = ev.target.selectionStart; // get cursor position
-    if (ev.key==='-' && pos===0 && !s.includes('-')) return true; 
+    if (key==='-' && pos===1 && !s.includes('-')) return true; 
   }
 
   // Future use ?
