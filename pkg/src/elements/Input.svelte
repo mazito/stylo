@@ -47,7 +47,7 @@
 input:focus {
   outline-width: 0px;
   outline-color: transparent;
-  background-color: var(--focus-background, #eaeaea);
+  background-color: var(--focus-background, #eaeaea) !important;
   padding-left: 4px;
 }
 </style>

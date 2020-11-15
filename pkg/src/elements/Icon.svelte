@@ -81,29 +81,32 @@
     vw = 0;
 
   // the icon-container css props
-  let css = Css($$props)
-            .blacklist(['font-size','color']);
-  
-  // the icon css props
-  let icss = Css($$props)
-              .synonym('size', 'font-size')
-              .synonym('color', 'fill')
-              .shorthand(['xs','sm','nm','md','lg','xl','h2','h1'], 'font-size')
-              .whitelist(['font-size','fill'])
-              
-  // set default props if none defined
-  icss.set('font-size', icss.get('font-size') || '1rem');
-  
-  // adjust icon-container props based on other received props
-  css.set('height', css.get('height') || icss.get('font-size'))
-      .set('width', css.get('width') || css.get('height') || icss.get('font-size'))
-      .set('line-height', css.get('height') || icss.get('font-size'))
-              
-  // adjust icon props based on other received props
-  // height is needed by SVG to correctly scale the icon
-  icss.set('height', icss.get('font-size'));
+  let css, icss;
 
   $: if (vw && $$props) {
+    // the icon-container css props
+    css = Css($$props)
+              .blacklist(['font-size','color']);
+    
+    // the icon css props
+    icss = Css($$props)
+                .synonym('size', 'font-size')
+                .synonym('color', 'fill')
+                .shorthand(['xs','sm','nm','md','lg','xl','h2','h1'], 'font-size')
+                .whitelist(['font-size','fill'])
+                
+    // set default props if none defined
+    icss.set('font-size', icss.get('font-size') || '1rem');
+    
+    // adjust icon-container props based on other received props
+    css.set('height', css.get('height') || icss.get('font-size'))
+        .set('width', css.get('width') || css.get('height') || icss.get('font-size'))
+        .set('line-height', css.get('height') || icss.get('font-size'))
+                
+    // adjust icon props based on other received props
+    // height is needed by SVG to correctly scale the icon
+    icss.set('height', icss.get('font-size'));
+
     show = css.visible(show, vw);
     // console.log("$ Icon vw=", vw, show)
   }

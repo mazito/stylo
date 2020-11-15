@@ -30,9 +30,10 @@
 
   let 
     vw = 0,
-    css = Css($$props);
+    css = null;
     
   $: if (vw && $$props) {
+    css = Css($$props);
     show = css.visible(show, vw);
     // console.log("Box", css)
   } 
